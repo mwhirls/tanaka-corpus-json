@@ -4,6 +4,7 @@ import csv
 from enum import Enum
 import json
 import os
+import re
 import constants
 
 OUTPUT_PATH = 'dist/jpn_eng_examples.json'
@@ -29,6 +30,14 @@ class Index:
         self.trans_id = trans_id
         self.text = text
 
+class Word:
+    def __init__(self, headword, reading, sense, surface_form, checked):
+        self.headword = headword
+        self.reading = reading
+        self.sense = sense
+        self.surface_form = surface_form
+        self.checked = checked
+
 def load_sentences(tsv_path):
     with open(tsv_path, "r", encoding="utf-8") as tsvf:
         reader = csv.DictReader(tsvf, fieldnames=[SentenceField.ID, SentenceField.LANG, SentenceField.TEXT], delimiter="\t")
@@ -53,11 +62,23 @@ def load_indices_dict(path):
     indices = load_indices(path)
     return to_dict(indices)
 
+def parse_word(word):
+    # format "headword()[sense]": https://dict.longdo.com/about/hintcontents/tanakacorpus.html
+    pattern = "^(?P<headword>[^()[\]{}]+)(?:\((?P<reading>.+)\))?(?:\[(?P<sense>.+)\])?(?:{(?P<surface_form>.+)})?(?P<checked>~)?$"
+    match = re.match(pattern, word)
+    assert match, "headword not found"
+    return match.groupdict()
+
+def parse_words(index):
+    word_strs = index.text.split()
+    return [parse_word(w) for w in word_strs]
+
 def to_json_entry(sentence, eng_sentences_dict, indices_dict):
     try:
         index = indices_dict[sentence.id]
         translation = eng_sentences_dict[index.trans_id]
-        return dict(id=sentence.id, transId=translation.id, text=sentence.text, translationText=translation.text)
+        words = parse_words(index)
+        return dict(id=sentence.id, text=sentence.text, translation=translation.text, words=words)
     except KeyError:
         return None
 
