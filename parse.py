@@ -62,12 +62,29 @@ def load_indices_dict(path):
     indices = load_indices(path)
     return to_dict(indices)
 
+def trim_word(word_dict):
+    headword = word_dict['headword']
+    result = dict(headword=headword)
+    reading = word_dict['reading']
+    if reading:
+        result['reading'] = reading
+    sense = word_dict['sense']
+    if sense:
+        result['sense'] = sense
+    surface_form = word_dict['surface_form']
+    if surface_form:
+        result['surface_form'] = surface_form
+    checked = word_dict['checked']
+    if checked:
+        result['checked'] = True
+    return result
+
 def parse_word(word):
     # format "headword()[sense]": https://dict.longdo.com/about/hintcontents/tanakacorpus.html
     pattern = "^(?P<headword>[^()[\]{}]+)(?:\((?P<reading>.+)\))?(?:\[(?P<sense>.+)\])?(?:{(?P<surface_form>.+)})?(?P<checked>~)?$"
     match = re.match(pattern, word)
     assert match, "headword not found"
-    return match.groupdict()
+    return trim_word(match.groupdict())
 
 def parse_words(index):
     word_strs = index.text.split()
@@ -89,7 +106,7 @@ def to_json(jpn_sentences_dict, eng_sentences_dict, indices_dict):
 def write_file(json_data, dest):
     os.makedirs(os.path.dirname(dest), exist_ok=True)
     with open(dest, "w", encoding='utf-8') as f:
-        json.dump(json_data, f, ensure_ascii=False, indent=4)
+        json.dump(json_data, f, ensure_ascii=False, separators=(',', ':'))
 
 jpn_sentences_dict = load_sentence_dict(constants.JPN_SENTENCES_PATH)
 eng_sentences_dict = load_sentence_dict(constants.ENG_SENTENCES_PATH)
