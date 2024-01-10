@@ -39,7 +39,15 @@ def load_indices(tsv_path):
         reader = csv.DictReader(tsvf, fieldnames=[IndexField.SENTENCE_ID, IndexField.TRANSLATION_ID, IndexField.TEXT], delimiter="\t")
         indices = map(lambda row: Index(row[IndexField.SENTENCE_ID], row[IndexField.TRANSLATION_ID], row[IndexField.TEXT]), reader)
         return list(indices)
+    
+def to_dict(sentences):
+    tuples = map(lambda s: (s.id, s), sentences)
+    return dict(list(tuples))
 
-jpn_sentences = load_sentences(JPN_SENTENCES_PATH)
-eng_sentences = load_sentences(ENG_SENTENCES_PATH)
+def load_sentence_dict(path):
+    sentences = load_sentences(path)
+    return to_dict(sentences)
+
+jpn_sentences_dict = load_sentence_dict(JPN_SENTENCES_PATH)
+eng_sentences_dict = load_sentence_dict(ENG_SENTENCES_PATH)
 indices = load_indices(INDICES_PATH)
