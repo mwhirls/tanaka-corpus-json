@@ -11,6 +11,7 @@ from pathlib import Path
 import os
 import certifi
 import urllib.request
+import constants
 
 def extract_bz2(archive_path, dest):
     with bz2.open(archive_path, "rb") as f:
@@ -60,14 +61,14 @@ class Archive:
         self.extract_dest = Path(extract_dest)
 
 jpn_sentences = Archive('https://downloads.tatoeba.org/exports/per_language/jpn/jpn_sentences.tsv.bz2',
-                        'downloads/jpn_sentences.tsv.bz2',
-                        'extracted/jpn_sentences.tsv')
+                        f'{constants.TEMP_DIR}/jpn_sentences.tsv.bz2',
+                        constants.JPN_SENTENCES_PATH)
 eng_sentences = Archive('https://downloads.tatoeba.org/exports/per_language/eng/eng_sentences.tsv.bz2',
-                        'downloads/eng_sentences.tsv.bz2',
-                        'extracted/eng_sentences.tsv')
+                        f'{constants.TEMP_DIR}/eng_sentences.tsv.bz2',
+                        constants.ENG_SENTENCES_PATH)
 indices = Archive('https://downloads.tatoeba.org/exports/jpn_indices.tar.bz2',
-                  'downloads/jpn_indices.tar.bz2',
-                  'extracted/jpn_indices.csv')
+                  f'{constants.TEMP_DIR}/jpn_indices.tar.bz2',
+                  constants.INDICES_PATH)
 
 archives = [jpn_sentences, eng_sentences, indices]
 

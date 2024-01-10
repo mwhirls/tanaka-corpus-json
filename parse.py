@@ -4,10 +4,8 @@ import csv
 from enum import Enum
 import json
 import os
+import constants
 
-JPN_SENTENCES_PATH = 'extracted/jpn_sentences.tsv'
-ENG_SENTENCES_PATH = 'extracted/eng_sentences.tsv'
-INDICES_PATH = 'extracted/jpn_indices.csv'
 OUTPUT_PATH = 'dist/jpn_eng_examples.json'
 
 class SentenceField(str, Enum):
@@ -72,8 +70,8 @@ def write_file(json_data, dest):
     with open(dest, "w", encoding='utf-8') as f:
         json.dump(json_data, f, ensure_ascii=False, indent=4)
 
-jpn_sentences_dict = load_sentence_dict(JPN_SENTENCES_PATH)
-eng_sentences_dict = load_sentence_dict(ENG_SENTENCES_PATH)
-indices_dict = load_indices_dict(INDICES_PATH)
+jpn_sentences_dict = load_sentence_dict(constants.JPN_SENTENCES_PATH)
+eng_sentences_dict = load_sentence_dict(constants.ENG_SENTENCES_PATH)
+indices_dict = load_indices_dict(constants.INDICES_PATH)
 examples_json = to_json(jpn_sentences_dict, eng_sentences_dict, indices_dict)
 write_file(examples_json, OUTPUT_PATH)
