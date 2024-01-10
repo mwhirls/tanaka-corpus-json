@@ -7,7 +7,7 @@ import os
 import re
 import constants
 
-OUTPUT_PATH = "dist/jpn_eng_examples.json"
+OUTPUT_PATH = "dist/jpn-eng-examples.json"
 
 
 class SentenceField(str, Enum):
@@ -18,8 +18,16 @@ class SentenceField(str, Enum):
 
 class IndexField(str, Enum):
     SENTENCE_ID = "id"
-    TRANSLATION_ID = "trans_id"
+    TRANSLATION_ID = "transId"
     TEXT = "text"
+
+
+class WordField(str, Enum):
+    HEADWORD = "headword"
+    READING = "reading"
+    SENSE = "sense"
+    SURFACE_FORM = "surfaceForm"
+    CHECKED = "checked"
 
 
 class Sentence:
@@ -95,26 +103,26 @@ def load_indices_dict(path):
 
 
 def trim_word(word_dict):
-    headword = word_dict["headword"]
+    headword = word_dict[WordField.HEADWORD]
     result = dict(headword=headword)
-    reading = word_dict["reading"]
+    reading = word_dict[WordField.READING]
     if reading:
-        result["reading"] = reading
-    sense = word_dict["sense"]
+        result[WordField.READING] = reading
+    sense = word_dict[WordField.SENSE]
     if sense:
-        result["sense"] = sense
-    surface_form = word_dict["surface_form"]
+        result[WordField.SENSE] = sense
+    surface_form = word_dict[WordField.SURFACE_FORM]
     if surface_form:
-        result["surface_form"] = surface_form
-    checked = word_dict["checked"]
+        result[WordField.SURFACE_FORM] = surface_form
+    checked = word_dict[WordField.CHECKED]
     if checked:
-        result["checked"] = True
+        result[WordField.CHECKED] = True
     return result
 
 
 def parse_word(word):
     # format "headword()[sense]": https://dict.longdo.com/about/hintcontents/tanakacorpus.html
-    pattern = "^(?P<headword>[^()[\]{}]+)(?:\((?P<reading>.+)\))?(?:\[(?P<sense>.+)\])?(?:{(?P<surface_form>.+)})?(?P<checked>~)?$"
+    pattern = "^(?P<headword>[^()[\]{}]+)(?:\((?P<reading>.+)\))?(?:\[(?P<sense>.+)\])?(?:{(?P<surfaceForm>.+)})?(?P<checked>~)?$"
     match = re.match(pattern, word)
     assert match, "headword not found"
     return trim_word(match.groupdict())
