@@ -1,6 +1,8 @@
 # tanaka-corpus-json
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![CC BY 4.0][cc-by-shield]][cc-by] 
+[![stability-wip](https://img.shields.io/badge/stability-wip-lightgrey.svg)](https://github.com/mkenney/software-guides/blob/master/STABILITY-BADGES.md#work-in-progress)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
+[![CC BY 4.0][cc-by-shield]][cc-by] 
 
 Japanese example sentences from the [Tanaka Corpus](https://www.edrdg.org/wiki/index.php/Tanaka_Corpus) (now maintained by the Tatoeba Project) in JSON format.
 
