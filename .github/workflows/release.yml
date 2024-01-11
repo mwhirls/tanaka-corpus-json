@@ -19,21 +19,8 @@ jobs:
     needs: build
     name: Publish new release
     steps:
-      - name: Changelog
-        uses: scottbrenner/generate-changelog-action@master
-        id: Changelog
+      - name: Publish release
         env:
-          REPO: ${{github.repository}}
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@latest
-        env:
-          RELEASE_TAG: v${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{github.run_number}}_${{github.sha}}
+          RELEASE_TAG: v${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{github.run_number}}
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        with:
-          tag_name: ${{env.RELEASE_TAG}}
-          release_name: Release ${{env.RELEASE_TAG}}
-          body: |
-            ${{ steps.Changelog.outputs.changelog }}
-          draft: false
-          prerelease: false
+        run: gh release create ${{env.RELEASE_TAG}} './dist/** --generate-notes'
