@@ -25,7 +25,7 @@ See [here](https://dict.longdo.com/about/hintcontents/tanakacorpus.html) for mor
 
 ## Releases
 
-You can download the pre-built JSON files from the [latest release](https://github.com/mwhirls/tanaka-corpus-json/releases/latest).  Automated releases containing the latest example sentences are scheduled weekly.
+You can download the pre-built JSON file from the [latest release](https://github.com/mwhirls/tanaka-corpus-json/releases/latest).  Automated releases containing the latest example sentences are scheduled weekly.
 
 ## License
 
