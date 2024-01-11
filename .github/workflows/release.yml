@@ -27,7 +27,7 @@ jobs:
           name: ${{env.JSON_FILENAME}}
           path: dist
       - name: Zip artifact for deployment
-        run: zip ${{env.JSON_FILENAME}} ./dist/* -r
+        run: cd dist/ && zip ../${{env.JSON_FILENAME}} ./* -r
       - name: Publish release
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
