@@ -1,4 +1,4 @@
-name: release
+name: Release
 
 on:
   push:
@@ -19,8 +19,13 @@ jobs:
     needs: build
     name: Publish new release
     steps:
+      - name: Get build artifacts from build step
+        uses: actions/download-artifact@v3
+        with:
+          name: jpn-eng-examples.zip
+          path: dist
       - name: Publish release
         env:
           RELEASE_TAG: v${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{github.run_number}}
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        run: gh release create ${{env.RELEASE_TAG}} './dist/** --generate-notes'
+        run: gh release create ${{env.RELEASE_TAG}} --generate-notes 'dist/*'

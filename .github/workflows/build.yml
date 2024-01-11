@@ -6,6 +6,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    name: Build latest JSON file
     strategy:
       matrix:
         python-version: ["3.11"]
