@@ -15,8 +15,11 @@ Each sentence entry in the JSON contains:
   * An optional reading
   * An optional sense index (which refers to correct sense for the word's dictionary entry in jmdict)
   * An optional surface form, if this differs from the headword form
-
+  * An optional field ("checked") indicating that the sentence pair is a good and checked example of the usage of the word
+ 
 The list of words for each example sentences is provided by Tatoeba under  [<b>Japanese indices</b>](https://tatoeba.org/en/downloads).  The indices were originally compiled when the corpus was integrated into the WWWJDIC server as detailed in the this [publication](https://www.edrdg.org/~jwb/paperdir/dicexamples.html).
+
+See [here](https://dict.longdo.com/about/hintcontents/tanakacorpus.html) for more information on the original data format of the Tanaka Corpus.
 
 ## Releases
 
