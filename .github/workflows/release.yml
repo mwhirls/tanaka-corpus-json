@@ -28,11 +28,11 @@ jobs:
         id: create_release
         uses: actions/create-release@latest
         env:
-          RELEASE_TAG: v$MAJOR_VERSION.$MINOR_VERSION.${{github.run_number}}_${{github.ref}}
+          RELEASE_TAG: v${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{github.run_number}}_${{github.sha}}
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         with:
-          tag_name: $RELEASE_TAG
-          release_name: Release $RELEASE_TAG
+          tag_name: ${{env.RELEASE_TAG}}
+          release_name: Release ${{env.RELEASE_TAG}}
           body: |
             ${{ steps.Changelog.outputs.changelog }}
           draft: false
