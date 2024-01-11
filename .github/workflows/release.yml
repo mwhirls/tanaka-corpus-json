@@ -9,6 +9,7 @@ on:
 env:
   MAJOR_VERSION: 0
   MINOR_VERSION: 0
+  JSON_FILENAME: jpn-eng-examples.zip
     
 jobs:
   build:
@@ -23,10 +24,12 @@ jobs:
       - name: Get build artifacts from build step
         uses: actions/download-artifact@v3
         with:
-          name: jpn-eng-examples.zip
+          name: ${{env.JSON_FILENAME}}
           path: dist
+      - name: Zip artifact for deployment
+        run: zip ${{env.JSON_FILENAME}} ./dist/* -r
       - name: Publish release
         env:
-          RELEASE_TAG: v${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{github.run_number}}
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        run: gh release create ${{env.RELEASE_TAG}} --generate-notes './dist/jpn-eng-examples.json'
+          RELEASE_TAG: v${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{github.run_number}}
+        run: gh release create ${{env.RELEASE_TAG}} --generate-notes '${{env.JSON_FILENAME}}'
