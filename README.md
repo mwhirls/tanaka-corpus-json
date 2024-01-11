@@ -1,12 +1,22 @@
 # tanaka-corpus-json
 
-[![CC BY 4.0][cc-by-shield]][cc-by]
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![CC BY 4.0][cc-by-shield]][cc-by] 
 
-Japanese-English example sentences from the Tanaka Corpus (maintained by the Tatoeba Project) in JSON format.  Word-level information is also included for each sentence to easily enable full-text search or other dictionary applications.  
+Japanese example sentences from the [Tanaka Corpus](https://www.edrdg.org/wiki/index.php/Tanaka_Corpus) (now maintained by the Tatoeba Project) in JSON format.
+
+## Format
+
+Each sentence entry in the JSON contains:
+* The entry ID, corresponding to the Japanese example sentence ID from Tatoeba
+* The Japanese example sentence from Tatoeba
+* The corresponding English translation provided by Tatoeba
+* A list of words that appear in the sentence containing:
+  * The headword form (dictionary form)
+  * An optional reading
+  * An optional sense index (which refers to correct sense for the word's dictionary entry in jmdict)
+  * An optional surface form, if this differs from the headword form
 
 The list of words for each example sentences is provided by Tatoeba under  [<b>Japanese indices</b>](https://tatoeba.org/en/downloads).  The indices were originally compiled when the corpus was integrated into the WWWJDIC server as detailed in the this [publication](https://www.edrdg.org/~jwb/paperdir/dicexamples.html).
-
-See [here](https://www.edrdg.org/wiki/index.php/Tanaka_Corpus) for more information on the Tanaka Corpus.
 
 ## Releases
 
@@ -16,9 +26,9 @@ You can download the pre-built JSON files from the [latest release](https://gith
 
 ### Tanaka Corpus
 
-The Tanaka Corpus is now maintained within the [Tatoeba Project](https://tatoeba.org/en/downloads).  All files downloaded through the Tatoeba Project are licensed under the CC BY 2.0 FR, which can be viewed [here][cc-by]
+The Tanaka Corpus is now maintained within the [Tatoeba Project](https://tatoeba.org/en/downloads).  All files downloaded through the Tatoeba Project are licensed under the [CC BY 2.0 FR license][cc-by].
 
-As required by the original license, all derived files distributed in each release are made available under the same license.
+As required by the original license, all derived files containing example sentences distributed in each release are made available under the same license.
 
 [![CC BY 4.0][cc-by-image]][cc-by]
 
