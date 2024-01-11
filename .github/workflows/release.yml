@@ -28,4 +28,4 @@ jobs:
         env:
           RELEASE_TAG: v${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{github.run_number}}
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        run: gh release create ${{env.RELEASE_TAG}} --generate-notes 'dist/*'
+        run: gh release create ${{env.RELEASE_TAG}} --generate-notes './dist/jpn-eng-examples.json'
