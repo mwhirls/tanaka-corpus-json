@@ -1,10 +1,10 @@
-# tanaka-corpus-json
+# tatoeba-json
 
 [![stability-wip](https://img.shields.io/badge/stability-wip-lightgrey.svg)](https://github.com/mkenney/software-guides/blob/master/STABILITY-BADGES.md#work-in-progress)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
 [![CC BY 4.0][cc-by-shield]][cc-by] 
 
-Japanese example sentences from the [Tanaka Corpus](https://www.edrdg.org/wiki/index.php/Tanaka_Corpus) (now maintained by the Tatoeba Project) in JSON format.
+Japanese-English example sentences from the [Tatoeba Project](https://tatoeba.org/en/downloads) in JSON format.
 
 ## Format
 
@@ -19,7 +19,7 @@ Each sentence entry in the JSON contains:
   * An optional surface form, if this differs from the headword form
   * An optional field ("checked") indicating that the sentence pair is a good and checked example of the usage of the word
  
-The list of words for each example sentences is provided by Tatoeba under  [<b>Japanese indices</b>](https://tatoeba.org/en/downloads).  The indices were originally compiled when the corpus was integrated into the WWWJDIC server as detailed in the this [publication](https://www.edrdg.org/~jwb/paperdir/dicexamples.html).
+The list of words for each example sentences is provided by Tatoeba under  [<b>Japanese indices</b>](https://tatoeba.org/en/downloads).  The indices were originally compiled when the Tanaka Corpus was integrated into the WWWJDIC server as detailed in the this [publication](https://www.edrdg.org/~jwb/paperdir/dicexamples.html).
 
 See [here](https://dict.longdo.com/about/hintcontents/tanakacorpus.html) for more information on the original data format of the Tanaka Corpus.
 
@@ -29,9 +29,9 @@ You can download the pre-built JSON file from the [latest release](https://githu
 
 ## License
 
-### Tanaka Corpus
+### Tatoeba Project / Tanaka Corpus
 
-The Tanaka Corpus is now maintained within the [Tatoeba Project](https://tatoeba.org/en/downloads).  All files downloaded through the Tatoeba Project are licensed under the [CC BY 2.0 FR license][cc-by].
+Many of the example sentences are originally sourced from the Tanaka Corpus, which is now maintained within the [Tatoeba Project](https://tatoeba.org/en/downloads).  All files downloaded through the Tatoeba Project are licensed under the [CC BY 2.0 FR license][cc-by].
 
 As required by the original license, all derived files containing example sentences distributed in each release are made available under the same license.
 
